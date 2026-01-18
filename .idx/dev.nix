@@ -26,6 +26,10 @@
       "vscjava.vscode-java-pack"
       "vscjava.vscode-java-test"
       "vscjava.vscode-maven"
+      # "vmware.vscode-spring-boot"
+      # "vscjava.vscode-spring-initializr"
+      # "vscjava.vscode-spring-boot-dashboard"
+      "mhutchie.git-graph"
     ];
 
     # Enable previews
