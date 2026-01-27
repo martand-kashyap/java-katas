@@ -8,6 +8,9 @@
   packages = [
     pkgs.jdk21
     pkgs.maven
+    pkgs.fontconfig
+    pkgs.dejavu_fonts
+    pkgs.graphviz
     # pkgs.go
     # pkgs.python311
     # pkgs.python311Packages.pip
@@ -30,6 +33,7 @@
       # "vscjava.vscode-spring-initializr"
       # "vscjava.vscode-spring-boot-dashboard"
       "mhutchie.git-graph"
+      "jebbs.plantuml"
     ];
 
     # Enable previews
