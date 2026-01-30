@@ -1,12 +1,13 @@
 # Low Level Design
 
-### **Personalized Curriculum Map: Low-Level System Design & Machine Coding**
+## Personalized Curriculum Map: Low-Level System Design & Machine Coding
 
 **Student Profile:**
-*   **Subject:** Low-Level System Design
-*   **Academic Goals:** Master LLD & machine coding for FAANG interviews.
-*   **Language:** Java
-*   **Grade Level:** Post-graduate in Computer Science
+
+* **Subject:** Low-Level System Design
+* **Academic Goals:** Master LLD & machine coding for FAANG interviews.
+* **Language:** Java
+* **Grade Level:** Post-graduate in Computer Science
 
 **Learning Approach:** The curriculum is designed for a post-graduate level, assuming a solid understanding of fundamental data structures and algorithms. The focus is on applying this knowledge to design robust, scalable, and maintainable systems under interview conditions.
 
