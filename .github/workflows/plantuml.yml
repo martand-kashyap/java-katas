@@ -1,0 +1,36 @@
+name: Generate PlantUML Diagrams
+
+on:
+  # Trigger on push when .puml files change
+  push:
+    paths:
+      - '**.puml'
+    branches:
+      - main  # or 'master'
+
+jobs:
+  render-diagrams:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push the generated images back to the repo
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      # 2. Generate SVG files from PlantUML source
+      # This action processes all .puml files and creates corresponding .svg files
+      - name: Generate SVG Diagrams
+        uses: holowinski/plantuml-github-action@main
+        with:
+          # Arguments: verbose output, generate SVG, process all .puml files
+          args: -v -tsvg **.puml
+
+      # 3. Commit and push the generated images
+      - name: Push Generated Images
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-render PlantUML diagrams [skip ci]"
+          branch: ${{ github.head_ref }}
+          file_pattern: '*.svg' # Only commit the generated SVG files
