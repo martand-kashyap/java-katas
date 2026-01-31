@@ -6,7 +6,9 @@ on:
     paths:
       - '**.puml'
     branches:
-      - main  # or 'master'
+      - master  # or 'master'
+    # Enables the "Run workflow" button in the GitHub UI
+    workflow_dispatch: 
 
 jobs:
   render-diagrams:
