@@ -2,17 +2,6 @@
 
 ## Personalized Curriculum Map: Low-Level System Design & Machine Coding
 
-**Student Profile:**
-
-* **Subject:** Low-Level System Design
-* **Academic Goals:** Master LLD & machine coding for FAANG interviews.
-* **Language:** Java
-* **Grade Level:** Post-graduate in Computer Science
-
-**Learning Approach:** The curriculum is designed for a post-graduate level, assuming a solid understanding of fundamental data structures and algorithms. The focus is on applying this knowledge to design robust, scalable, and maintainable systems under interview conditions.
-
----
-
 | Learning Objective                                        | Resources                                                                                 | Activities                                                                                                                   | Assessments                                                                                            |
 |-----------------------------------------------------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | **Module 1: Foundations of Object-Oriented Design (OOD)** |                                                                                           |                                                                                                                              |                                                                                                        |
@@ -52,3 +41,63 @@
 | **Full Mock Interview 1**                                 | Pramp, interviewing.io, or with peers.                                                    | A 60-minute mock interview simulating FAANG conditions, covering a standard LLD problem.                                     | Detailed, actionable feedback from the interviewer on design, coding, and communication.               |
 | **Full Mock Interview 2**                                 | Pramp, interviewing.io, or with peers.                                                    | A second mock interview with a different, more complex problem.                                                              | Analysis of performance improvements compared to the first mock interview.                             |
 | **Review and Refine**                                     | Personal notes and feedback from all assessments and mock interviews.                     | Identify weak areas based on feedback and revisit the relevant modules and resources.                                        | Self-assessment of progress and adjustment of the learning plan for the final stages of preparation.   |
+
+---
+
+This curriculum is designed using **Bloom’s Taxonomy**, moving from *Understanding* (Theory) to *Applying* (Implementation) and finally to *Creating* (Machine Coding). Given your postgraduate background, the curriculum skips "introductory syntax" and focuses on **Internal Mechanics, Design Philosophies, and Concurrency**, which are the differentiators in FAANG interviews.
+
+### **Curriculum Meta-Framework**
+
+*   **Prerequisite Check:** Proficiency in Data Structures & Algorithms (Complexity analysis), basic Java syntax, and familiarity with OS concepts (Threads/Processes).
+*   **Progress Tracking:** Use a "Red-Amber-Green" (RAG) status for each row. *Green = Can implement without reference; Amber = Need documentation; Red = Struggling with concept.*
+*   **Flexibility Marker:** This is a **Sprint-Based Curriculum**. If a module takes longer, skip the "Refinement" tasks of that module and carry them into the next "Review Week."
+
+---
+
+### **The Master Curriculum Map: LLD & Machine Coding (Java)**
+
+| Phase | Module | Learning Objectives | Curated Resources | Hands-on Activities (70% Focus) | Assessments | Est. Time |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **I. Foundation** | 1. Java Internals | Understand JVM Memory Model (Stack vs Heap), JIT, and GC. | *Effective Java* (Bloch); Baeldung JVM guides | Profile a Java app using VisualVM to observe Heap usage. | Quiz on Memory Leaks | 4 Days |
+| | 2. Advanced OOP | Master Composition vs Inheritance & Interface-driven design. | *Clean Code* (Martin); Design Patterns Wiki | Refactor a "God Class" into smaller, cohesive classes. | Code Review (SOLID check) | 3 Days |
+| | 3. SOLID Principles | Apply S, O, L, I, D to prevent "Rigid" codebases. | Refactoring.Guru (SOLID section) | Take an existing messy project and refactor using 'L' and 'I'. | Peer Review: Violation Hunt | 5 Days |
+| | 4. Java Collections Deep-Dive | Understand internal workings of HashMap, ConcurrentHashMap, etc. | Java Docs; "How HashMap works" (Articles) | Implement a custom simplified Hash Table with collision handling. | Complexity Analysis Test | 4 Days |
+| | 5. Exception Handling | Design robust error propagation strategies for production. | *Effective Java* (Exception chapters) | Build a custom Exception hierarchy for a banking system. | Edge Case Stress Test | 2 Days |
+| | 6. Generics & Type Safety | Use Bounded Wildcards and Type Erasure effectively. | Java Tutorials; *Effective Java* | Implement a generic `Repository<T>` pattern for a mock DB. | Type-safety Audit | 3 Days |
+| **II. Intermediate** | 7. Creational Patterns | Master Singleton, Factory, Builder, and Prototype. | *Head First Design Patterns* | Implement a `DocumentBuilder` using the Builder Pattern. | Implementation Speed Test | 4 Days |
+| | 8. Structural Patterns | Master Adapter, Decorator, Facade, and Proxy. | Refactoring.Guru | Implement a `LoggingDecorator` for a File Stream. | Design Pattern Mapping | 5 Days |
+| | 9. Behavioral Patterns | Master Strategy, Observer, Command, and State. | *Design Patterns: Elements of Reusable OOP* | Build a `PaymentProcessor` using the Strategy Pattern. | Behavior Logic Test | 6 Days |
+| | 10. Multithreading Basics | Lifecycle of a Thread, Runnable vs Callable. | *Java Concurrency in Practice* (Goetz) | Create a thread pool from scratch using `wait()` and `notify()`. | Thread Race Condition Test | 5 Days |
+| | 11. Concurrency Utilities | Master `java.util.concurrent` (Locks, Semaphores, CountDownLatch). | Oracle Concurrency Docs | Implement a "Bounded Buffer" using `ReentrantLock`. | Deadlock Detection Lab | 5 Days |
+| | 12. Memory Visibility | Understand `volatile`, Happens-before relationship, and Atomic variables. | JSR-133 Specification summaries | Write a counter that fails without `volatile` and fix it. | Thread Safety Audit | 4 Days |
+| | 13. Executor Framework | Master ThreadPoolExecutor, ScheduledExecutor, and ForkJoin. | Baeldung (Executor Service) | Implement a task-scheduling system using `ScheduledExecutor`. | Throughput Benchmarking | 4 Days |
+| **III. Advanced** | 14. Concurrency Patterns | Producer-Consumer, Reader-Writer, and Read-Write Locks. | *Java Concurrency in Practice* | Implement a thread-safe `LRU Cache` using `ConcurrentHashMap`. | Performance Profiling | 6 Days |
+| | 15. Optimistic vs Pessimistic | Master CAS (Compare-and-Swap) and AtomicInteger. | Artical: "How CAS works" | Re-implement a simple Lock using `AtomicReference`. | Contention Analysis | 4 Days |
+| | 16. Design for Extensibility | Plug-in architectures and SPI (Service Provider Interface). | Java SPI Documentation | Build a plugin-based "File Parser" (CSV, JSON, XML). | Extensibility Test | 5 Days |
+| | 17. API Design (LLD) | Design clean, intuitive, and versioned method signatures. | Google API Design Guide | Design a REST-like API for a Library Management system. | Interface Usability Review | 4 Days |
+| | 18. Database Schema (LLD) | Design relational schemas for LLD (normalization/indexing). | Database System Concepts (Silberschatz) | Design the schema for a "Ride Sharing" app (Uber-like). | Schema Normalization Test | 5 Days |
+| | 19. Performance Optimization | Identifying bottlenecks via profiling and algorithmic optimization. | JProfiler/YourKit Tutorials | Profile a heavy computation task and reduce latency by 50%. | Latency Benchmark | 5 Days |
+| | 20. Unit Testing (TDD) | Write testable code using JUnit and Mockito. | *Test Driven Development* (Kent Beck) | Implement a feature following strict TDD (Red-Green-Refactor). | Test Coverage Analysis | 5 Days |
+| **IV. Interview Prep** | 21. Machine Coding: Parking Lot | Class diagram $\to$ Implementation of a multi-level parking lot. | Common FAANG LLD Patterns | Full implementation in 90 mins (Java). | Mock Interview (Functionality) | 6 Days |
+| | 22. Machine Coding: Elevator | State pattern, Command pattern, and concurrency. | YouTube: "Elevator Design LLD" | Implement an elevator controller with multiple floors. | Mock Interview (Concurrency) | 6 Days |
+| | 23. Machine Coding: Splitwise | Precision math (BigDecimal) and Graph-based debt settlement. | System Design Primer (GitHub) | Implement a debt-splitting engine (minimize transactions). | Correctness/Math Test | 6 Days |
+| | 24. Machine Coding: Snake/Ladders | Game loop, Entity-Component design. | LeetCode/GeeksForGeeks | Implement a scalable game engine for Snake & Ladders. | Code Cleanliness Audit | 4 Days |
+| | 25. Machine Coding: BookMyShow | Concurrency (Seat booking), Locking, and Transactional integrity. | Real-world Case Studies | Implement a seat-booking system with high concurrency. | Deadlock/Race Condition Test | 7 Days |
+| | 26. Machine Coding: Logging Lib | Singleton, Chain of Responsibility, and File I/O. | Log4j Source Code Analysis | Implement a thread-safe, multi-level Logger. | Throughput/Latency Test | 5 Days |
+| | 27. Real-world Pattern: Observer | Event-driven LLD (Pub-Sub). | Refactoring.Guru | Build a real-time Stock Price Update system. | Scalability Check | 4 Days |
+| | 28. Real-world Pattern: State | Complex state transitions (Vending Machine). | Design Patterns Video Series | Implement a Vending Machine with various payment states. | State Transition Matrix Test | 4 Days |
+| | 29. Speed Coding Drills | Time-boxed implementation of basic LLD components. | LeetCode (Design category) | Implement 5 "Design" problems in 5 hours. | Time-under-pressure Assessment | 5 Days |
+| | 30. Full Mock Interviews | End-to-end: Requirements $\to$ Class Diagram $\to$ Code. | Pramp / Interviewing.io | Conduct 3 full-length 60-min LLD mock interviews. | Feedback Scorecard | Ongoing |
+
+---
+
+### **Implementation Strategy for the Postgraduate Student**
+
+1.  **The "Deep-Dive" Rule:** Since you are a PG student, do not just learn *how* to use a `HashMap`. You must learn how it handles *resizing*, the *load factor*, and how *Java 8+ changed the collision handling from linked lists to balanced trees*.
+2.  **The Machine Coding Format:** In FAANG interviews, they don't just want code that works; they want code that is **extensible**. For every activity, ask yourself: *"If the interviewer asks me to add a new requirement right now, how many classes do I have to change?"* (Aim for $< 2$).
+3.  **The 70/30 Split:** Spend 30% of your time reading *Effective Java* or *Design Patterns*. Spend 70% of your time in an IDE (IntelliJ IDEA) actually typing code and debugging.
+4.  **Tooling Recommendation:**
+    *   **IDE:** IntelliJ IDEA (Master the debugger).
+    *   **Diagramming:** LucidChart or Mermaid.js (for drawing class diagrams during interviews).
+    *   **Profiling:** VisualVM (Essential for the "Advanced" phase).
+    *   **Testing:** JUnit 5 & Mockito.

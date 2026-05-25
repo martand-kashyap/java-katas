@@ -2,17 +2,227 @@
 
 ## SOLID principles
 
-### [Single Responsibilty Principle (SRP)](solid-srp.md)
-
-### [Open Closed Principle (OCP)](solid-ocp.md)
-
-### [Liskov Substitution Principle (LSP)](solid-lsp.md)
-
-### [Interface Segregation Principle (ISP)](solid-isp.md)
-
-### [Dependency Inversion Principle (DIP)](solid-dip.md)
+1. [Single Responsibilty Principle (SRP)](solid-srp.md)
+2. [Open Closed Principle (OCP)](solid-ocp.md)
+3. [Liskov Substitution Principle (LSP)](solid-lsp.md)
+4. [Interface Segregation Principle (ISP)](solid-isp.md)
+5. [Dependency Inversion Principle (DIP)](solid-dip.md)
 
 ---
+
+## OO Concepts
+
+### Encapsulation
+
+Encapsulation bundles data and methods into classes while hiding internal details, making it essential for robust low-level design in real-world systems like banking apps or payment processors.
+
+`Encapsulation = Data Hiding + Controlled Access`
+
+- Use private for fields and provide public getters/setters with validation (e.g., reject negative deposits).
+- Centralize business rules in methods to enforce invariants, like minimum withdrawal amounts.
+- Favor immutable objects where possible (final fields) for thread-safety in concurrent apps.
+- Expose only necessary APIs; avoid oversized public interfaces to minimize coupling.
+- Best practice: Always validate inputs in setters and log invalid attempts for auditing in enterprise systems.
+​
+
+### Abstraction
+
+Abstraction simplifies complex systems in low-level design by exposing essential interfaces while concealing implementation details, enabling flexible, scalable code in applications like payment gateways or notification services.
+
+- Define minimal interfaces with only essential methods to avoid "fat" contracts.
+- Use abstract classes for shared code (e.g., common fields) and interfaces for pure contracts.
+​- Program to interfaces (e.g., List over ArrayList) for flexibility via Dependency Inversion.
+- Combine with polymorphism: Clients interact via base types, enabling runtime swaps.
+- Best practice: Start with "what" (user needs), then abstract "how" (details), and validate via Liskov Substitution—subclasses must interchangeable without breaking behavior.
+
+Example : 
+```mermaid
+classDiagram
+    class Shape {
+        <<abstract>>
+        +area() double
+        +color string
+    }
+    class Circle {
+        -radius double
+        +area() double
+    }
+    Shape <|-- Circle : extends
+```
+
+#### Encapsulation vs Abstraction
+
+| Aspect | Abstraction                                             | Encapsulation                                                  |
+|--------|---------------------------------------------------------|----------------------------------------------------------------|
+| Focus  | "What" the object does (interface level)              ​  | "How" internals are protected (data level) geeksforgeeks​       |
+| Goal   | Reduce complexity via contracts                         | Ensure data integrity and controlled access almabetter​         |
+| Tools  | Interfaces/abstract classes                             | Access modifiers (private/public) + getters/setters algomaster​ |
+| Scope  | External client view                                    | Internal implementation bundling geeksforgeeks​                 |
+
+Encapsulation Example (BankAccount - Data Protection)
+
+```java
+public class BankAccount {
+    private double balance;  // Hidden data
+
+    public void deposit(double amount) {
+        if (amount > 0) balance += amount;  // Validation inside
+    }
+    
+    public double getBalance() { return balance; }
+}
+```
+
+Abstraction Example (PaymentProcessor - Interface Simplicity)
+
+```java
+interface PaymentProcessor {
+    void process(double amount);  // Contract: "what" to do
+}
+
+class CreditCardProcessor implements PaymentProcessor {
+    public void process(double amount) {
+        // Complex: validate card, API call, logging
+    }
+}
+```
+
+### Polymorphism
+
+1. Compile-Time Polymorphism (Method Overloading) : Overloading lets multiple methods share a name but differ in parameters; resolved at compile time for flexible APIs.
+
+```java
+public class Calculator {
+    // Overload 1: Two integers
+    public int add(int a, int b) {
+        return a + b;  // Compiler picks based on args
+    }
+    
+    // Overload 2: Three doubles
+    public double add(double a, double b, double c) {
+        return a + b + c;
+    }
+}
+
+// Usage
+Calculator calc = new Calculator();
+System.out.println(calc.add(5, 3));     // Calls int version: 8
+System.out.println(calc.add(1.0, 2.0, 3.0));  // Calls double version: 6.0
+```
+
+Class diagram
+
+```mermaid
+classDiagram
+    class Calculator {
+        +add(int a, int b) int
+        +add(double a, double b, double c) double
+    }
+```
+
+2. Run-Time Polymorphism (Method Overriding) : Overriding lets subclasses redefine parent methods; resolved at runtime based on object type.
+
+```java
+abstract class NotificationSender {
+    public abstract void send(String message);  // Contract
+}
+
+class EmailSender extends NotificationSender {
+    @Override
+    public void send(String message) {
+        System.out.println("Email: " + message);  // Specific impl
+    }
+}
+
+class SMSSender extends NotificationSender {
+    @Override
+    public void send(String message) {
+        System.out.println("SMS: " + message);
+    }
+}
+
+// Usage
+NotificationSender sender = new EmailSender();  // Runtime decides
+sender.send("Order shipped");  // Outputs: Email: Order shipped
+
+sender = new SMSSender();
+sender.send("Order shipped");  // Outputs: SMS: Order shipped
+```
+
+Class diagram
+
+```mermaid
+classDiagram
+    class NotificationSender {
+        <<abstract>>
+        +send(message: String) void
+    }
+    class EmailSender {
+        +send(message: String) void
+    }
+    class SMSSender {
+        +send(message: String) void
+    }
+    NotificationSender <|-- EmailSender : extends
+    NotificationSender <|-- SMSSender : extends
+    Client ..|> NotificationSender : uses
+```
+
+### Inheritance
+
+Inheritance enables code reuse by letting you define common logic once in a base class and then extend or specialize it in multiple derived classes.
+
+## Object Relationships
+
+### Inheritance
+
+### Polymorphism
+
+### Association (HAS-A / USES-A relationship)
+
+Association represents a relationship between two classes where one object uses, communicates with, or references another.
+
+_"Has-a" relationship (often implied)_ : While not as strict as composition or aggregation, association often implies a "has-a" relationship, meaning an object of one class "has" or uses an object of another class. For example, a `Student` "has an" `Address`.
+
+_Loose Coupling_ : Associations tend to represent a looser coupling between classes compared to aggregation or composition. **Objects can exist independently of each other.** The association can be unidirectional or bidirectional, and can follow different multiplicity patterns (1-to-1, 1-to-many, etc.).
+
+_How it differs from other relationships (which are also types of association)_ :
+
+![venn-diagram-association](https://media.geeksforgeeks.org/wp-content/uploads/Associatn.png "Relationship among Association, Aggregation & Composition")
+
+While aggregation and composition are specialized forms of association, "association" itself is the most general form.
+
+Aggregation: Represents a "part-of" relationship where the "part" can exist independently of the "whole." (e.g., a `Department` has `Professors` - professors can exist outside a department).
+
+Composition: Represents a strong "part-of" relationship where the "part" cannot exist independently of the "whole." If the "whole" is destroyed, the "part" is also destroyed. (e.g., a `House` has `Rooms` - a room cannot exist without a house).
+
+```mermaid
+classDiagram
+    Student <-- Teacher : teaches
+    Student --> Teacher : learns from
+```
+
+### Aggregation
+
+
+
+### Composition
+
+### Dependency
+
+### Realization
+
+```mermaid
+classDiagram
+    classA --|> classB : Inheritance
+    classC --* classD : Composition
+    classE --o classF : Aggregation
+    classG --> classH : Association
+    classI -- classJ : Link(Solid)
+    classK ..> classL : Dependency
+    classM ..|> classN : Realization
+    classO .. classP : Link(Dashed)
+```
 
 ## OO: Encapsulation & Abstraction
 
